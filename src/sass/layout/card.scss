@@ -1,0 +1,32 @@
+.card{
+    background-color: #fff;
+    padding: 4rem;
+    border-radius: 2rem;
+    color:$color-primary;
+    position: relative;
+    margin-bottom: 2rem;
+
+    &.reverse{
+        background-color: rgba($color: #000000, $alpha: 0.25);
+        color: #fff;
+    }
+}
+.num-display{
+    position: absolute;
+    top: -1rem;
+    left: -1rem;
+    width: 4rem;
+    height: 4rem;
+    color:  #fff;
+    border-radius: 50%;
+    background-color: $color-secondary;
+    border: 1px solid $card-color;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.text-display{
+    text-align: center;
+}

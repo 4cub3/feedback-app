@@ -1,0 +1,39 @@
+form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    & h2{
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+}
+.input-group{
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    & input[type="text"]{
+        flex: 0 0 100%;
+        padding: 2rem 11rem 2rem 2rem;
+        border-radius: 1rem;
+        border: 1px solid $card-color;
+        width: 100%;
+        margin-right: -10rem;
+        word-wrap: break-word;
+        font-size: 1.8rem;
+        &::placeholder{
+            font-size: 1.8rem;
+        }
+        &:focus{
+            outline: none;
+        }
+    }
+
+    
+}
+.message{
+    color: red;
+    font-size: 1.2rem;
+    margin-top: 2rem ;
+}

@@ -1,0 +1,13 @@
+.close{
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    font-size: 1.8rem;
+    top: 1rem;
+    right: 2rem;
+    cursor: pointer;
+
+    &:focus{
+        outline: none;
+    }
+}
