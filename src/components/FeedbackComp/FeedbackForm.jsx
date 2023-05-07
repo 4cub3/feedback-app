@@ -1,45 +1,58 @@
-import { useState } from "react";
+import React, { useState,useContext, useEffect  } from "react";
+import { FormContext } from "../../context/formContext";
 import Button from "../../shared/Button";
 import Card from "../../shared/Card";
 import FeedbackRating from "./FeedbackRating";
 
-function FeedbackForm({handleFeedback}) {
+function FeedbackForm() {
   const [text, setText] = useState("");
   const [rating, setRating] = useState(10);
   const [btnDisabled, setDisable] = useState(true);
   const [message, setMessage] = useState("");
-
-
+  const {addFeedback, feedbackEdit, updateFeedbackItem} = useContext(FormContext)
+  
   const changeHandler = (e) => {
     if(text === ''){
-        setDisable(true)
-        setMessage(null)
+      setDisable(true)
+      setMessage('Review must be atleast 10 characters long')
     }
-  else  if(text !== '' && text.trim().length <=10){
-        setDisable(true)
-        setMessage('Review must be atleast 10 characters long')
+    else  if(text !== '' && text.trim().length <=10){
+      setDisable(true)
+      setMessage('Review must be atleast 10 characters long')
     }
     else{
-        setDisable(false)
-        setMessage(null);
+      setDisable(false)
+      setMessage(null);
     }
-
+    
     setText(e.target.value);
   };
-
-
-
+  
+  
+  
   const submitHandler = (e) => {
     e.preventDefault();
     if(text.trim().length>10){
-        const newFeedback = {
-            text: text,
-            rating: rating,
-        }
-        handleFeedback(newFeedback);
-        setText('')
+      const newFeedback = {
+        text: text,
+        rating: rating,
+      }
+      if(feedbackEdit.edit === true){
+        updateFeedbackItem(feedbackEdit.item.id, newFeedback)
+      }else{
+        addFeedback(newFeedback);
+      }
+      setText('')
     }
   };
+  
+    useEffect(()=>{
+      if(feedbackEdit.edit === true){
+        setDisable(false)
+        setText(feedbackEdit.item.text)
+        setRating(feedbackEdit.item.rating)
+      }
+    },[feedbackEdit])
 
   return (
     <Card>
@@ -63,4 +76,4 @@ function FeedbackForm({handleFeedback}) {
   );
 }
 
-export default FeedbackForm;
+export default React.memo(FeedbackForm);

@@ -1,11 +1,16 @@
 import { motion, AnimatePresence } from "framer-motion";
-import PropTypes from "prop-types";
+import { useContext  } from "react";
+import { FormContext } from "../../context/formContext";
 import FeedbackItem from "./FeedbackItem";
 
-function FeedbackList({ feedback, handleDelete }) {
+function FeedbackList() {
+
+  const {feedback} = useContext(FormContext)
+
   if (!feedback || feedback.length === 0) {
     return <p style={{ textAlign: "center" }}>No Feedback yet</p>;
   }
+
 
   return (
     <div className="feedback-list">
@@ -18,9 +23,7 @@ function FeedbackList({ feedback, handleDelete }) {
             exit={{ transform: 'translateX(-100%)', opacity: 0, position: 'absolute'  }}
           >
             <FeedbackItem
-              key={item.id} 
               item={item}
-              handleDelete={handleDelete}
             />
           </motion.div>
         ))}
@@ -39,7 +42,5 @@ function FeedbackList({ feedback, handleDelete }) {
     // )
 }
 
-FeedbackList.propTypes = {
-  feedback: PropTypes.array.isRequired,
-};
+
 export default FeedbackList;

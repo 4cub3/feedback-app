@@ -1,9 +1,9 @@
-import { BrowserRouter as Router, Route, Routes, } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import AboutPage from "./pages/AboutPage";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
-
+// import Aboutsss from "./pages/Aboutsss";
 // function App (){
 //     const title = 'blog post';
 //     const body = 'This is a blog post';
@@ -54,9 +54,10 @@ function App() {
       <Header />
       <div className="container">
         <Routes>
-          <Route path="/" Component={Home} exact />
-          <Route path="/about" Component={AboutPage} />
-          <Route path='*' Component={NotFound}/>
+          <Route path="/" element={<Home />} exact />
+          <Route path="/about/*" element={<AboutPage />} /> {/* to use nested route you have to add /* to the Parent Route*/}
+          {/* <Route path="/about/:id" element={<Aboutsss />} /> */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </Router>

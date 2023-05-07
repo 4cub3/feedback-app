@@ -9,7 +9,7 @@ const NotFound = () => {
       <article className="text-center flex flex-col items-center justify-center gap-8">
         <FaOsi className="text-[12rem] text-pink-10" />
         <h1 className=" text-[5rem] font-[600] text-slate-10"> ERROR 404 </h1>
-        <p className="uppercase">The page you are looking for does not exist</p>
+        <p className="uppercase">Then requested page is not available</p>
         
         <Link
           to="/"

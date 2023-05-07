@@ -1,13 +1,18 @@
-import { useState } from "react";
-
-function FeedbackRating({select}) {
+import { useState, useContext ,useEffect} from "react";
+import { FormContext } from "../../context/formContext";
+function FeedbackRating({ select }) {
   const [selected, setSelected] = useState(10);
-  const changeHandler = (e) =>{
-    
-    setSelected(Number(e.target.value))
-    select(Number(e.target.value))
-    
-  }
+  const { feedbackEdit } = useContext(FormContext);
+  const changeHandler = (e) => {
+    setSelected(Number(e.target.value));
+    select(Number(e.target.value));
+  
+  };
+  useEffect(()=>{
+    if (feedbackEdit.edit === true) {
+      setSelected(feedbackEdit.item.rating);
+    }
+  }, [feedbackEdit])
   return (
     <ul className="gap-8 my-4">
       <li>
